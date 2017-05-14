@@ -6,7 +6,7 @@
 	var password = process.env.MLAB_PASSWORD_WEBDEV;
 	connectionString = 'mongodb://' + username + ':' + password;
 	connectionString += '@ds151279.mlab.com:51279/heroku_6gg9qzq5'; // user yours
-}
+    }
     
     angular
         .module("TestApp", [])
