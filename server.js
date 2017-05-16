@@ -12,7 +12,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/env', function(req, res) {
   res.json(process.env);
-}
+});
 
 var port = process.env.PORT || 3000;
 
