@@ -20,7 +20,16 @@ app.get('/env', function(req, res) {
       connectionString = 'mongodb://' + username + ':' + password;
       connectionString += '@ds151279.mlab.com:51279/heroku_6gg9qzq5'; // user yours
   }
-  res.json({connectionString: connectionString});
+ 
+  var mongoose = require('mongoose');
+  var error = null;
+  try {
+  mongoose.connect(connectionString);
+  } catch(e) {
+    error = e;
+  }
+  
+  res.json({connectionString: connectionString, error: error});
 });
 
 var port = process.env.PORT || 3000;
