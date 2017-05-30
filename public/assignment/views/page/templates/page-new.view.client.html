@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header pull-left">
+            <a class="navbar-brand pull-left" href="#">
+                New Page
+            </a>
+        </div>
+        <p class="navbar-text pull-right">
+            <a href="#" class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-check"></span>
+            </a>
+        </p>
+    </div>
+</nav>
+
+<div class="col-xs-12 col-sm-8">
+    <label for="name">Name</label>
+    <input id="name"
+           ng-model="model.page.name"
+           class="form-control"
+           value="Page Name"/>
+
+    <label for="description">Description</label>
+    <input id="description"
+              ng-model="model.page.description"
+              class="form-control">
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a href="#!/profile" class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
+    </div>
+</nav>

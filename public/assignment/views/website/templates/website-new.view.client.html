@@ -1,0 +1,38 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header pull-left">
+            <a class="navbar-brand pull-left" href="#">
+                New Website
+            </a>
+        </div>
+        <p class="navbar-text pull-right">
+            <a href="#" class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-check"></span>
+            </a>
+        </p>
+    </div>
+</nav>
+
+<div class="col-xs-12 col-sm-8">
+    <label for="name">Name</label>
+    <input id="name"
+           ng-model="model.website.name"
+           class="form-control"
+           value="Website Name"/>
+
+    <label for="title">Title</label>
+    <textarea id="title"
+              ng-model="model.website.description"
+              rows="5"
+              class="form-control">Description</textarea>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a href="#!/profile" class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
+    </div>
+</nav>
