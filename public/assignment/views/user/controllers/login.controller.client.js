@@ -14,10 +14,12 @@
 
             if (found !== null) {
                 $location.url('/user/' + found._id)
+                model.userId = found._id;
             }
             else {
                 model.message = "Invalid login information."
             }
         };
+
     }
 })();

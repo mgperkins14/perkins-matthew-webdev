@@ -1,13 +1,13 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar bg-primary navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header pull-left">
-            <a class="navbar-brand pull-left" href="#">
+            <a class="navbar-brand pull-left">
                 Edit Page
             </a>
         </div>
         <p class="navbar-text pull-right">
-            <a href="{{model.pageCompleteUrl()}}" class="navbar-link pull-right">
-                <span class="glyphicon glyphicon-plus"></span>
+            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-ok"></span>
             </a>
         </p>
     </div>
@@ -16,43 +16,46 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-4 hidden-xs scrollable-left">
-            <div class="list-group">
+            <ul class="list-group">
                 <li class="list-group-item active">
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-11 col-xs-6">
                             Page Name
                         </div>
-                        <div ng-repeat="page in model.pages">
-                <li class="list-group-item">
+                    </div>
+                </li>
+
+                <li ng-repeat="page in model.pages" class="list-group-item">
+
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                            <a href="page-list.view.client.html">
+                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
                                 {{page.name}}
                             </a>
                         </div>
                         <div class="col-sm-4 col-xs-4">
-                            <a href="{{model.selectNewEdit(page)}}" class="pull-right">
+                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}" class="pull-right">
                                 <span class="glyphicon glyphicon-cog pull-right"></span>
                             </a>
                         </div>
                     </div>
+
                 </li>
-            </div>
+
+            </ul>
         </div>
         <div class="col-xs-12 col-sm-8">
-            <label for="name">Name</label>
+            <label for="name"></label>
             <input id="name"
-                   ng-model="model.page.name"
+                   ng-model="model.name"
                    class="form-control"
-                   value="Blogger"
-                   placeholder="{{model.name}}"/>
+                   value="Blogger"/>
 
             <label for="description"></label>
-            <input ng-model="model.page.description"
+            <input ng-model="model.description"
                    id="description"
-                   class="form-control"
-                   placeholder="{{model.description}}">
-            <a href="page-list.view.client.html"
+                   class="form-control">
+            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page"
                class="btn btn-block btn-danger">
                 Delete
             </a>
@@ -60,10 +63,10 @@
     </div>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar bg-primary navbar-fixed-bottom">
     <div class="container-fluid">
         <p class="navbar-text pull-right">
-            <a href="#!/profile" class="navbar-link pull-right">
+            <a href="#!/user/{{model.userId}}" class="navbar-link pull-right">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </p>

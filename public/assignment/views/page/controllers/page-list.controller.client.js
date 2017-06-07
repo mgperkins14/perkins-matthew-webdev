@@ -8,18 +8,16 @@
     function pageListController(pageService, websiteService, $routeParams) {
         var model = this;
         var websiteId = $routeParams["websiteId"];
+        var userId = $routeParams["userId"];
 
         function init() {
+            model.websiteId = websiteId;
+            model.userId = userId;
             model.pages = pageService.findPageByWebsiteId(websiteId);
             model.website = websiteService.findWebsiteById(websiteId);
-            model.userId = model.website.userId;
-            model.user = websiteService.findUserById(model.userId);
+            model.user = websiteService.findWebsiteById(model.userId);
         }
         init();
 
-        function pageEditUrl(pageId) {
-            var url = '#!/user/' + model.userId + '/website/' + websiteId + '/page/' + pageId;
-            return url;
-        }
     }
 })();

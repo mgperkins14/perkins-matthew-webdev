@@ -39,17 +39,17 @@
                 controllerAs: 'model'
             })
             .when('/user/:userId/website/:websiteId/page', {
-                templateUrl: 'views/page/page-list.view.client.html',
+                templateUrl: 'views/page/templates/page-list.view.client.html',
                 controller: 'pageListController',
                 controllerAs: 'model'
             })
             .when('/user/:userId/website/:websiteId/page/new', {
-                templateUrl: 'views/page/page-new.view.client.html',
+                templateUrl: 'views/page/templates/page-new.view.client.html',
                 controller: 'newPageController',
                 controllerAs: 'model'
             })
             .when('/user/:userId/website/:websiteId/page/:pageId', {
-                templateUrl: 'views/page/page-edit.view.client.html',
+                templateUrl: 'views/page/templates/page-edit.view.client.html',
                 controller: 'editPageController',
                 controllerAs: 'model'
             })
@@ -63,7 +63,7 @@
                 controller: 'widgetChooserController',
                 controllerAs: 'model'
             })
-            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:wgid', {
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', {
                 templateUrl: 'views/widget/templates/widget-edit.view.client.html',
                 controller: 'editWidgetController',
                 controllerAs: 'model'

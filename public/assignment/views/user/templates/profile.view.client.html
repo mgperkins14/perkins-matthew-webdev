@@ -1,16 +1,15 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar bg-primary navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-                Fixed Top
+        <div class="navbar-header pull-left">
+            <a class="navbar-brand pull-left">
+                Profile
             </a>
-            <p class="navbar-text pull-right">
-                <a href="#" class="navbar-link">
-          <span class="glyphicon glyphicon-plus">
-          </span>
-                </a>
-            </p>
         </div>
+        <p class="navbar-text pull-right">
+            <a href="#!/user/{{model.userId}}/website" class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </p>
     </div>
 </nav>
 
@@ -50,15 +49,15 @@
     </form>
 
     <a class="btn btn-primary btn-block"
-       href="#!/websiteList">Websites</a>
+       href="#!/user/{{model.userId}}/website">Websites</a>
     <a class="btn btn-danger  btn-block"
-       href="login.view.client.html">Logout</a>
+       href="#!/">Logout</a>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar bg-primary navbar-fixed-bottom">
     <div class="container-fluid">
         <p class="navbar-text pull-right">
-            <a href="#!/profile" class="navbar-link pull-right">
+            <a href="#!/user/{{model.userId}}" class="navbar-link pull-right">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </p>

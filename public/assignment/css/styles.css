@@ -29,3 +29,16 @@ h1#header {
     width: 100%;
     height: 100%;
 }
+
+.navbar-header a {
+    color: white;
+}
+
+.navbar-text a {
+    color: white;
+}
+
+#delete {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

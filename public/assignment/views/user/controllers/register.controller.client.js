@@ -25,7 +25,8 @@
                     password: password
                 };
                 userService.createUser(user);
-                $location.url('/user' + user._id)
+                $location.url('#!/user' + user._id)
+                model.userId = user._id;
             }
         }
     }
