@@ -17,12 +17,12 @@
                 .findWidgetById(widgetId)
                 .then(function (widget) {
                     model.widget = widget;
+                    model.widgetType = model.widget.widgetType;
                 });
             model.userId = userId;
             model.websiteId = websiteId;
             model.pageId = pageId;
             model.widgetId = widgetId;
-            model.widgetType = model.widget.widgetType;
 
         }
         init();
