@@ -48,13 +48,13 @@
             <input id="name"
                    ng-model="model.name"
                    class="form-control"
-                   value="Name"/>
+                   value="{{model.website.name}}"/>
 
             <label for="description">Website Description</label>
             <textarea id="description"
                       ng-model="model.description"
                       rows="5"
-                      class="form-control">Elaborate on your website here.</textarea>
+                      class="form-control">{{model.website.description}}</textarea>
 
             <a id="delete" href="#!/user/{{model.userId}}/website"
                class="btn btn-block btn-danger">

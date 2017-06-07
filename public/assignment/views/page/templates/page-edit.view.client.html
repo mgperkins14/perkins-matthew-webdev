@@ -14,52 +14,50 @@
 </nav>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-4 hidden-xs scrollable-left">
-            <ul class="list-group">
-                <li class="list-group-item active">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-8 col-sm-11 col-xs-6">
-                            Page Name
-                        </div>
+    <div class="col-sm-4 hidden-xs scrollable-left">
+        <ul class="list-group">
+            <li class="list-group-item active">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-11 col-xs-6">
+                        Page Name
                     </div>
-                </li>
+                </div>
+            </li>
 
-                <li ng-repeat="page in model.pages" class="list-group-item">
+            <li ng-repeat="page in model.pages" class="list-group-item">
 
-                    <div class="row">
-                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
-                                {{page.name}}
-                            </a>
-                        </div>
-                        <div class="col-sm-4 col-xs-4">
-                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}" class="pull-right">
-                                <span class="glyphicon glyphicon-cog pull-right"></span>
-                            </a>
-                        </div>
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
+                            {{page.name}}
+                        </a>
                     </div>
+                    <div class="col-sm-4 col-xs-4">
+                        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}"
+                           class="pull-right">
+                            <span class="glyphicon glyphicon-cog pull-right"></span>
+                        </a>
+                    </div>
+                </div>
 
-                </li>
+            </li>
 
-            </ul>
-        </div>
-        <div class="col-xs-12 col-sm-8">
-            <label for="name"></label>
-            <input id="name"
-                   ng-model="model.name"
-                   class="form-control"
-                   value="Blogger"/>
+        </ul>
+    </div>
+    <div class="col-xs-12 col-sm-8">
+        <label for="name">Page Name</label>
+        <input id="name"
+               ng-model="model.name"
+               class="form-control"/>
 
-            <label for="description"></label>
-            <input ng-model="model.description"
-                   id="description"
-                   class="form-control">
-            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page"
-               class="btn btn-block btn-danger">
-                Delete
-            </a>
-        </div>
+        <label for="description">Page Description</label>
+        <input ng-model="model.description"
+               id="description"
+               class="form-control">
+        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page"
+           class="btn btn-block btn-danger">
+            Delete
+        </a>
     </div>
 </div>
 

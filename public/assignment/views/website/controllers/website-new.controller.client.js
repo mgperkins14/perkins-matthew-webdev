@@ -17,11 +17,12 @@
                 description: description
             };
 
-            websiteService.createWebsite(model.userId, website);
-
-            model.websiteId = website.websiteId;
-
-            $location.url('#!/user/' + model.userId + '/website/' + model.websiteId)
+            websiteService
+                .createWebsite(model.userId, website)
+                .then(function (website) {
+                    model.websiteId = website._id;
+                    $location.url('#!/user/' + model/userId + 'website/' + model.websiteId)
+                });
         }
     }
 })();

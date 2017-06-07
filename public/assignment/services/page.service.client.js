@@ -3,7 +3,7 @@
         .module('WebAppMaker')
         .factory('pageService', pageService);
 
-    function pageService() {
+    function pageService($http) {
 
         var pages = [
             {_id: "321", name: "Post 1", websiteId: "456", description: "Lorem"},
@@ -22,43 +22,43 @@
         return api;
 
         function createPage(websiteId, page) {
-            page.websiteId = websiteId;
-            page._id = (new Date()).getTime() + "";
-            pages.push(page);
+            var url = "/api/assignment/website/" + websiteId + "/page";
+            return $http.post(url, page)
+                .then(function (response) {
+                    return response.data;
+                })
         }
 
         function findPageByWebsiteId(websiteId) {
-            var resultSet = [];
-            for(var p in pages) {
-                if(pages[p].websiteId === websiteId) {
-                    resultSet.push(pages[p]);
-                }
-            }
-            return resultSet;
+            var url = "/api/assignment/website/" + websiteId + "/page";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function findPageById(pageId) {
-            return pages.find(function (page) {
-                return page._id === pageId;
-            });
+            var url = "/api/assignment/page/" + pageId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function updatePage(pageId, page) {
-            var replacePage = findPageById(pageId);
-            for (var k in pages) {
-                if (page.hasOwnProperty(k)) {
-                    replacePage[k] = page[k];
-                }
-            }
+            var url = "/api/assignment/page/" + pageId;
+            return $http.put(url)
+                .then(function (response) {
+                    return response.data;
+                })
         }
 
         function deletePage(pageId) {
-            var p = pages.find(function (page) {
-                return page._id === pageId;
-            });
-            var index = pages.indexOf(p);
-            pages.splice(index, 1);
+            var url = "/api/assignment/page/" + pageId;
+            return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
-
     }
 })();

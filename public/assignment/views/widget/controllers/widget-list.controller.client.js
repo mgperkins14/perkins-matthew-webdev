@@ -13,7 +13,11 @@
 
 
         function init() {
-            model.widgets = widgetService.findWidgetsByPageId(pageId);
+            widgetService
+                .findWidgetsByPageId(pageId)
+                .then(function (widgets) {
+                    model.widgets = widgets
+                });
             model.userId = userId;
             model.websiteId = websiteId;
             model.pageId = pageId;

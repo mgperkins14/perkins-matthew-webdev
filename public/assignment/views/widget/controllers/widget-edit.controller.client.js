@@ -13,7 +13,11 @@
         var widgetId = $routeParams['widgetId'];
 
         function init() {
-            model.widget = widgetService.findWidgetById(widgetId);
+            widgetService
+                .findWidgetById(widgetId)
+                .then(function (widget) {
+                    model.widget = widget;
+                });
             model.userId = userId;
             model.websiteId = websiteId;
             model.pageId = pageId;

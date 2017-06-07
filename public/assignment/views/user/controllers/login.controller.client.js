@@ -10,16 +10,23 @@
 
         model.login = function (username, password) {
 
-            var found = userService.findUserByCredentials(username, password);
+            // var found = userService.findUserByCredentials(username, password);
+            userService
+                .findUserByCredentials(username, password)
+                .then(login, handleError);
 
-            if (found !== null) {
-                $location.url('/user/' + found._id)
-                model.userId = found._id;
+            function handleError(error) {
+                model.message = "Username " + username + " not found, please try again";
             }
-            else {
-                model.message = "Invalid login information."
+
+            function login(found) {
+                if(found !== null) {
+                    $location.url('/user/' + found._id);
+                    // $scope.message = "Welcome " + username;
+                } else {
+                    model.message = "Username " + username + " not found, please try again";
+                }
             }
         };
-
     }
 })();

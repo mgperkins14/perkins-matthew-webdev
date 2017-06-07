@@ -3,8 +3,6 @@
         .module('WebAppMaker')
         .controller('pageListController', pageListController);
 
-
-
     function pageListController(pageService, websiteService, $routeParams) {
         var model = this;
         var websiteId = $routeParams["websiteId"];
@@ -13,9 +11,18 @@
         function init() {
             model.websiteId = websiteId;
             model.userId = userId;
-            model.pages = pageService.findPageByWebsiteId(websiteId);
-            model.website = websiteService.findWebsiteById(websiteId);
-            model.user = websiteService.findWebsiteById(model.userId);
+
+            pageService
+                .findPageByWebsiteId(model.websiteId)
+                .then(function (pages) {
+                    model.pages = pages;
+                });
+
+            websiteService
+                .findWebsiteById(model.websiteId)
+                .then(function (website) {
+                    model.website = website;
+                });
         }
         init();
 

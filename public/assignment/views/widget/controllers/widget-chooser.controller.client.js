@@ -5,7 +5,7 @@
 
 
 
-    function widgetChooserController(widgetService, $routeParams) {
+    function widgetChooserController(widgetService, $routeParams, $location) {
         var model = this;
 
         function init() {
@@ -21,9 +21,12 @@
                 widgetType = "HEADING"
             ];
 
-            widgetService.createWidget(model.pageId, widget);
-
-            model.widgetId = widget._id;
+            widgetService
+                .createWidget(model.pageId, widget)
+                .then(function (widget) {
+                   model.widgetId = widget._id;
+                   $location.url("#!/user/"+model.userI+"/website/"+model.websiteId+"/page/"+model.pageId+"/widget/"+model.widgetId);
+                });
         }
 
         function newImage() {
@@ -32,9 +35,12 @@
                 widgetType = "IMAGE"
             ];
 
-            widgetService.createWidget(model.pageId, widget);
-
-            model.widgetId = widget._id;
+            widgetService
+                .createWidget(model.pageId, widget)
+                .then(function (widget) {
+                    model.widgetId = widget._id;
+                    $location.url("#!/user/"+model.userI+"/website/"+model.websiteId+"/page/"+model.pageId+"/widget/"+model.widgetId);
+                });
         }
 
         function newYouTube() {
@@ -43,9 +49,12 @@
                 widgetType = "YOUTUBE"
             ];
 
-            widgetService.createWidget(model.pageId, widget);
-
-            model.widgetId = widget._id;
+            widgetService
+                .createWidget(model.pageId, widget)
+                .then(function (widget) {
+                    model.widgetId = widget._id;
+                    $location.url("#!/user/"+model.userI+"/website/"+model.websiteId+"/page/"+model.pageId+"/widget/"+model.widgetId);
+                });
         }
     }
 })();

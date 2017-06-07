@@ -3,7 +3,7 @@
         .module('WebAppMaker')
         .factory('websiteService', websiteService);
 
-    function websiteService() {
+    function websiteService($http) {
 
         var websites = [
             {"_id": "123", "name": "Facebook", "developerId": "456", "description": "Lorem"},
@@ -24,44 +24,43 @@
         };
 
         function createWebsite(userId, website) {
-            website.developerId = userId;
-            website._id = (new Date()).getTime() + "";
-            website.created = new Date();
-            website.updated = new Date();
-            websites.push(website);
+            var url = "/api/assignment/website" + userId + "/website";
+            return $http.post(url, website)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function findWebsitesByUser(userId) {
-            var resultSet = [];
-            for(var w in websites) {
-                if(websites[w].developerId === userId) {
-                    resultSet.push(websites[w]);
-                }
-            }
-            return resultSet;
+            var url = "/api/assignment/user/" + userId + "/website";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function findWebsiteById(websiteId) {
-            return websites.find(function (website) {
-                return website._id === websiteId;
-            });
+            var url = "/api/assignment/website/" + websiteId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function updateWebsite(websiteId, website) {
-            var replaceSite = findWebsiteById(websiteId);
-            for (var k in website) {
-                if (website.hasOwnProperty(k)) {
-                    replaceSite[k] = website[k];
-                }
-            }
+            var url = "/api/assignment/website/" + websiteId;
+            return $http.put(url, website)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function deleteWebsite(websiteId) {
-            var w = websites.find(function (website) {
-                return website._id === websiteId;
-            });
-            var index = websites.indexOf(w);
-            websites.splice(index, 1);
+            var url = "/api/assignment/website/" + websiteId;
+            return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
     }
