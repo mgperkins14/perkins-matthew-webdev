@@ -42,8 +42,8 @@ function findPageById(req, res) {
             res.send(pages[p]);
             return;
         }
-        res.sendStatus(404);
     }
+    res.sendStatus(404);
 }
 
 function updatePage(req, res) {

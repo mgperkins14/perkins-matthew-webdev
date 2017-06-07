@@ -52,8 +52,8 @@ function findWidgetById(req, res) {
             res.send(widgets[w]);
             return;
         }
-        res.sendStatus(404);
     }
+    res.sendStatus(404);
 }
 
 function updateWidget(req, res) {
