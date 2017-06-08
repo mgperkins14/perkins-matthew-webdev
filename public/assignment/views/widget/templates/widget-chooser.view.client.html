@@ -9,36 +9,22 @@
 </nav>
 
 <div class="container-fluid">
-    <ul class="list-group">
 
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-lg-5 col-md-8 col-sm-11 col-xs-11">
-                    <a ng-click="model.newHeader()">
-                        Header
-                    </a>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-lg-5 col-md-8 col-sm-11 col-xs-11">
-                    <a ng-click="model.newImage()">
-                        Image
-                    </a>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-lg-5 col-md-8 col-sm-11 col-xs-11">
-                    <a ng-click="model.newYouTube()">
-                        YouTube
-                    </a>
-                </div>
-            </div>
-        </li>
-    </ul>
+    <a ng-click="model.newHeader()"
+       class="btn btn-primary btn-block">
+        Header
+    </a>
+
+    <a ng-click="model.newImage()"
+       class="btn btn-primary btn-block">
+        Image
+    </a>
+
+    <a ng-click="model.newYouTube()"
+       class="btn btn-primary btn-block">
+        YouTube
+    </a>
+
 </div>
 
 <nav class="navbar bg-primary navbar-fixed-bottom">

@@ -27,8 +27,7 @@
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
         </div>
-        <div ng-include="model.getWidgetUrlForType(widget.widgetType)"></div>
-        <div ng-switch="widget.widgetType">
+        <div ng-switch="widget.widgetType" wbdv-sortable>
 
             <div ng-switch-when="HEADING" ng-switch="widget.size">
                 <h1 ng-switch-when="1">{{widget.text}}</h1>

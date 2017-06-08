@@ -3,8 +3,6 @@
         .module('WebAppMaker')
         .controller('editWidgetController', editWidgetController);
 
-
-
     function editWidgetController(widgetService, $routeParams) {
         var model = this;
         var userId = $routeParams['userId'];
@@ -18,6 +16,8 @@
                 .then(function (widget) {
                     model.widget = widget;
                     model.widgetType = model.widget.widgetType;
+                    model.name = model.widget.name;
+                    model.description = model.widget.description;
                 });
             model.userId = userId;
             model.websiteId = websiteId;

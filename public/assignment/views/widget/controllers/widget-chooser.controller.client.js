@@ -20,12 +20,13 @@
             var widget = [
                 widgetType = "HEADING"
             ];
+            model.widgetType = "HEADING";
 
             widgetService
                 .createWidget(model.pageId, widget)
                 .then(function (widget) {
                    model.widgetId = widget._id;
-                   $location.url("#!/user/"+model.userI+"/website/"+model.websiteId+"/page/"+model.pageId+"/widget/"+model.widgetId);
+                   $location.url("#!/user/"+model.userId+"/website/"+model.websiteId+"/page/"+model.pageId+"/widget/"+model.widgetId);
                 });
         }
 
@@ -34,12 +35,13 @@
             var widget = [
                 widgetType = "IMAGE"
             ];
+            model.widgetType = "IMAGE";
 
             widgetService
                 .createWidget(model.pageId, widget)
                 .then(function (widget) {
                     model.widgetId = widget._id;
-                    $location.url("#!/user/"+model.userI+"/website/"+model.websiteId+"/page/"+model.pageId+"/widget/"+model.widgetId);
+                    $location.url("#!/user/"+model.userId+"/website/"+model.websiteId+"/page/"+model.pageId+"/widget/"+model.widgetId);
                 });
         }
 
@@ -48,12 +50,13 @@
             var widget = [
                 widgetType = "YOUTUBE"
             ];
+            model.widgetType = "YOUTUBE";
 
             widgetService
                 .createWidget(model.pageId, widget)
                 .then(function (widget) {
                     model.widgetId = widget._id;
-                    $location.url("#!/user/"+model.userI+"/website/"+model.websiteId+"/page/"+model.pageId+"/widget/"+model.widgetId);
+                    $location.url("#!/user/"+model.userId+"/website/"+model.websiteId+"/page/"+model.pageId+"/widget/"+model.widgetId);
                 });
         }
     }
