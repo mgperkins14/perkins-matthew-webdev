@@ -1,14 +1,16 @@
 var app = require('../../express');
 var multer = require('multer'); // npm install multer --save
-var upload = multer({ dest: __dirname+'/../../public/assignment/uploads' });
+var upload = multer({dest: __dirname + '/../../public/assignment/uploads'});
+var widgetModel = require('../model/widget/widget.model.server');
 
-app.post    ('/api/assignment/page/:pageId/widget', createWidget);
-app.get     ('/api/assignment/page/:pageId/widget', findAllWidgetsForPage);
-app.get     ('/api/assignment/widget/:widgetId', findWidgetById);
-app.put     ('/api/assignment/widget/:widgetId', updateWidget);
-app.delete  ('/api/assignment/widget/:widgetId', deleteWidget);
-app.put     ('api/assignment/page/:pageId/widget', reorderWidget);
-app.post    ("/api/upload", upload.single('myFile'), uploadImage);
+
+app.post('/api/assignment/page/:pageId/widget', createWidget);
+app.get('/api/assignment/page/:pageId/widget', findAllWidgetsForPage);
+app.get('/api/assignment/widget/:widgetId', findWidgetById);
+app.put('/api/assignment/widget/:widgetId', updateWidget);
+app.delete('/api/assignment/widget/:widgetId', deleteWidget);
+app.put('api/assignment/page/:pageId/widget', reorderWidget);
+app.post("/api/upload", upload.single('myFile'), uploadImage);
 
 var widgets = [
     {"_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -28,89 +30,95 @@ var widgets = [
 
 function createWidget(req, res) {
     var pageId = req.params.pageId;
+    var widget = req.body;
+    widget.pageId = pageId;
 
-    var widget = [
-        widget.pageId = pageId,
-        widget._id = (new Date()).getTime() + ""
-    ];
+    widgetModel
+        .createWidget(widget)
+        .then(function (widget) {
+            res.json(widget)
+        })
 
-    widgets.push(widget);
-    res.send(widget);
 }
 
 function findAllWidgetsForPage(req, res) {
     var pageId = req.params.pageId;
-    var resultSet = [];
-    for(var w in widgets) {
-        if(widgets[w].pageId === pageId) {
-            resultSet.push(widgets[w]);
-        }
-    }
-    res.send(resultSet);
+
+    widgetModel
+        .findAllWidgetsForPage(pageId)
+        .then(function (widgets) {
+            widgets = widgetModel.sort({order: 1})
+            res.send(widgets);
+        })
 }
 
 function findWidgetById(req, res) {
     var widgetId = req.params.widgetId;
-    for (var w in widgets) {
-        if (widgets[w]._id === widgetId) {
-            res.send(widgets[w]);
-            return;
-        }
-    }
-    res.sendStatus(404);
+
+    widgetModel
+        .findWidgetById(widgetId)
+        .then(function (widget) {
+            res.json(widget)
+        }, function (err) {
+            res.sendStatus(404)
+        })
 }
 
 function updateWidget(req, res) {
     var widget = req.body;
     var widgetId = req.params.widgetId;
-    for (var w in widgets) {
-        if (widgetId === widgets[w]._id) {
-            widgets[w] = widget;
-            res.sendStatus(200);
-            return;
-        }
-    }
-    res.sendStatus(404);
+
+    widgetModel
+        .updateWidget(widgetId, widget)
+        .then(function (status) {
+            res.sendStatus(200)
+        })
 }
 
 function deleteWidget(req, res) {
     var widgetId = req.params.widgetId;
-    var widget = widgets.find(function (widget) {
-        return widget._id === widgetId;
-    });
-    var index = widgets.indexOf(widget);
-    widgets.splice(index, 1);
-    res.sendStatus(200);
+
+    widgetModel
+        .deleteWidget(widgetId)
+        .then(function (status) {
+            res.sendStatus(200)
+        })
 }
 
 function reorderWidget(req, res) {
-    var index1 = req.query['index1'];
-    var index2 = req.query['index2'];
+    var pageId = req.query['pageId'];
+    var start = req.query['index1'];
+    var end = req.query['index2'];
 
+    widgetModel
+        .reorderWidget(pageId, index1, index2)
+        .then(function (widgets) {
+            res.send(widgets)
+        });
 }
 
 function uploadImage(req, res) {
 
-    var widgetId      = req.body.widgetId;
-    var width         = req.body.width;
-    var myFile        = req.file;
+    var widgetId = req.body.widgetId;
+    var width = req.body.width;
+    var myFile = req.file;
 
     var userId = req.body.userId;
     var websiteId = req.body.websiteId;
     var pageId = req.body.pageId;
 
-    var originalname  = myFile.originalname; // file name on user's computer
-    var filename      = myFile.filename;     // new file name in upload folder
-    var path          = myFile.path;         // full path of uploaded file
-    var destination   = myFile.destination;  // folder where file is saved to
-    var size          = myFile.size;
-    var mimetype      = myFile.mimetype;
+    var originalname = myFile.originalname; // file name on user's computer
+    var filename = myFile.filename;     // new file name in upload folder
+    var path = myFile.path;         // full path of uploaded file
+    var destination = myFile.destination;  // folder where file is saved to
+    var size = myFile.size;
+    var mimetype = myFile.mimetype;
 
     // var widget = findWidgetById(widgetId);
     var widget = {};
     widget.url = '/assignment/public/uploads' + filename;
 
-    var callbackUrl   = "/assignment/#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
+    var callbackUrl = "/assignment/#!/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
 
     res.redirect(callbackUrl);
 

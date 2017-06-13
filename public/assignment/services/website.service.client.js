@@ -24,7 +24,7 @@
         };
 
         function createWebsite(userId, website) {
-            var url = "/api/assignment/website" + userId + "/website";
+            var url = "/api/assignment/user/" + userId + "/website";
             return $http.post(url, website)
                 .then(function (response) {
                     return response.data;
@@ -57,6 +57,7 @@
 
         function deleteWebsite(websiteId) {
             var url = "/api/assignment/website/" + websiteId;
+            console.log("here");
             return $http.delete(url)
                 .then(function (response) {
                     return response.data;

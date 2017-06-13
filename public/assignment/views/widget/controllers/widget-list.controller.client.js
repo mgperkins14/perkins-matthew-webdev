@@ -4,7 +4,6 @@
         .controller('widgetListController', widgetListController);
 
 
-
     function widgetListController(widgetService, $routeParams, $sce) {
         var model = this;
         var pageId = $routeParams["pageId"];
@@ -40,5 +39,11 @@
 
             return $sce.trustAsResourceUrl(embedUrl);
         }
+
+        function reorderWidgets(start, end) {
+            widgetService.reorderWidget(pageId, start, end)
+            init();
+        }
+
     }
 })();
