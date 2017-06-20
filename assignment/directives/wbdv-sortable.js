@@ -1,43 +1,25 @@
-var app = require('../../express');
-var widgetModel = require('../model/widget/widget.model.server');
+(function() {
+    angular.module("WebAppMaker")
+        .directive('wdDraggable', wdDraggable);
 
-(function () {
-    angular
-        .module('wbdvDirectives', ['WidgetModel'])
-        .directive('wbdvSortable', wbdvSortable);
-
-
-    // $(function() {
-    //     $('#sortable').sortable({
-    //         start: function(event, ui) {
-    //             var start_pos = ui.item.index();
-    //             ui.item.data('start_pos', start_pos);
-    //         },
-    //         change: function(event, ui) {
-    //             var start_pos = ui.item.data('start_pos');
-    //             var index = ui.placeholder.index();
-    //             if (start_pos < index) {
-    //                 $('#sortable li:nth-child(' + index + ')').addClass('highlights');
-    //             } else {
-    //                 $('#sortable li:eq(' + (index + 1) + ')').addClass('highlights');
-    //             }
-    //         },
-    //         update: function(event, ui) {
-    //             $('#sortable li').removeClass('highlights');
-    //         }
-    //     });
-    // });
-
-    function wbdvSortable() {
-
+    function wdDraggable(widgetService) {
         function linkFunction(scope, element) {
-            $(element).sortable();
-            $(element).draggable();
+            var initial = 0;
+            $(element).sortable({
+                    start: function(event, ui) {
+                        initial = $("ul").index(ui.item);
+                    }
+                }, {
+                    stop: function(event, ui) {
+                        var final = $("ul").index(ui.item);
+                        widgetService.sortList(initial, final);
+                    }
+                }
+            );
         }
 
         return {
             link: linkFunction
         }
     }
-
 })();

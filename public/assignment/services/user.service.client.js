@@ -1,27 +1,20 @@
-/**
- * Created by MattP on 5/27/17.
- */
 (function () {
     angular
         .module('WebAppMaker')
         .factory('userService', userService);
 
     function userService($http) {
-
-        var users = [
-            {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-            {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-            {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-            {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-        ];
-
         return {
             createUser: createUser,
             findUserByCredentials: findUserByCredentials,
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            login: login,
+            logout: logout,
+            register: register,
+            checkLoggedIn: checkLoggedIn
         };
 
         function createUser(user) {
@@ -71,5 +64,39 @@
                     return response.data;
                 });
         }
+
+        function login(username, password) {
+            var user = {
+                username: username,
+                password: password
+            };
+            return $http.post("/api/assignment/login ", user)
+                .then(
+                    function (res) {
+                        return res.data;
+                    }
+                );
+        }
+
+        function logout(user) {
+            return $http.post("/api/assignment/logout");
+        }
+
+        function register(user) {
+            return $http.post("/api/assignment/register", user)
+                .then(function (res) {
+                        return res.data;
+                    }
+                )
+        }
+
+        function checkLoggedIn() {
+            var url = "/api/assignment/checkLoggedIn";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
     }
 })();

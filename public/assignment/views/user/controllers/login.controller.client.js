@@ -4,7 +4,7 @@
         .controller('loginController', loginController);
 
 
-    function loginController($location, userService) {
+    function loginController($location, userService, $rootScope) {
 
         var model = this;
 
@@ -21,12 +21,14 @@
 
             function login(found) {
                 if(found !== null) {
-                    $location.url('/user/' + found._id);
+                    $location.url('/profile');
+                    $rootScope.currentUser = found;
                     // $scope.message = "Welcome " + username;
                 } else {
                     model.message = "Username " + username + " not found, please try again";
                 }
             }
         };
+
     }
 })();

@@ -25,7 +25,7 @@
             })
             .when('/user/:userId/website', {
                 templateUrl: 'views/website/templates/website-list.view.client.html'
-                ,controller: 'websiteListController',
+                , controller: 'websiteListController',
                 controllerAs: 'model'
             })
             .when('/user/:userId/website/new', {
@@ -73,6 +73,28 @@
                 controller: 'flickrImageSearchController',
                 controllerAs: 'model'
             })
-
+            .when("/profile", {
+                templateUrl: "views/user/templates/profile.view.client.html",
+                controller: "profileController",
+                controllerAs: "model",
+                resolve: {loggedin: checkLoggedin}
+            })
     }
+
+        function checkLoggedin($q, $location, userService) {
+            var deferred = $q.defer();
+            userService
+                .checkLoggedIn()
+                .then(function (currentUser) {
+                    if(currentUser === '0') {
+                        deferred.reject();
+                        $location.url('/login');
+                    } else {
+                        deferred.resolve(currentUser);
+                    }
+                });
+            return deferred.promise;
+        }
+
+
 })();

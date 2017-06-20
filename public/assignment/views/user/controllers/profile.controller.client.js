@@ -8,39 +8,50 @@
 
 
 
-    function profileController($location, $routeParams, userService) {
-
+    function profileController($location, $routeParams, userService, $rootScope) {
         var model = this;
-        var userId = $routeParams['userId'];
+        var userId = $routeParams['uid'];
+        model.user = $rootScope.currentUser;
+        var userId = $rootScope.currentUser._id;
+
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
+        model.logout = logout;
 
         function init() {
-            model.userId = userId;
+            userService
+                .findUserById(userId)
+                .then(function (user) {
+                    model.user = user;
+                    model.userId = model.user._id;
+                })
         }
         init();
 
-        userService
-            .findUserById(userId)
-            .then(renderUser);
 
-        function renderUser (user) {
-            model.user = user;
-        }
-
-        function deleteUser(user) {
+        function deleteUser() {
             userService
-                .deleteUser(user._id)
+                .deleteUser(model.userId)
                 .then(function () {
+                    $rootScope.currentUser = null;
                     $location.url('/login');
                 });
         }
 
-        function updateUser(user) {
+        function updateUser() {
             userService
-                .updateUser(user._id, user)
+                .updateUser(model.userId, model.user)
                 .then(function () {
                     model.message = "User updated successfully";
+                });
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $rootScope.currentUser = null;
+                    $location.url('/login');
                 });
         }
     }

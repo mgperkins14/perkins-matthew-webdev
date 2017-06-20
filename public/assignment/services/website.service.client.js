@@ -57,7 +57,7 @@
 
         function deleteWebsite(websiteId) {
             var url = "/api/assignment/website/" + websiteId;
-            console.log("here");
+            console.log(url);
             return $http.delete(url)
                 .then(function (response) {
                     return response.data;
