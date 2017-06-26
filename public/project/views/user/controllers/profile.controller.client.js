@@ -1,8 +1,7 @@
 (function () {
     angular
-        .module('Project')
+        .module('NBApp')
         .controller('profileController', profileController);
-
 
 
     function profileController($location, $routeParams, userService) {

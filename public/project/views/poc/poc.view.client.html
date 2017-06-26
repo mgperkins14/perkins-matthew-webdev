@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <div class="input-group">
+        <input ng-model="searchText"
+               type="text"
+               class="form-control">
+        <span class="input-group-btn">
+            <a ng-click="model.search()" class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+        </span>
+    </div>
+
+    <div class="row">
+        <div ng-repeat="game in model.games">
+            <a href="">
+                {{game}}
+            </a>
+        </div>
+    </div>
+</div>

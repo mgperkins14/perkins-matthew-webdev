@@ -3,16 +3,16 @@ var userModel = require('../model/user/user.model.server');
 var passport = require('passport');
 var bcrypt = require("bcrypt-nodejs");
 var LocalStrategy = require('passport-local').Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy;
-
-var facebookConfig = {
-    clientID     : process.env.FACEBOOK_CLIENT_ID,
-    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
-    callbackURL  : process.env.FACEBOOK_CALLBACK_URL
-};
+// var FacebookStrategy = require('passport-facebook').Strategy;
+//
+// var facebookConfig = {
+//     clientID     : process.env.FACEBOOK_CLIENT_ID,
+//     clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+//     callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+// };
 
 passport.use(new LocalStrategy(localStrategy));
-passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+// passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 

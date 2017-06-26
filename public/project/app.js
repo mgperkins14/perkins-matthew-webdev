@@ -1,5 +1,5 @@
 (function () {
     angular
-        .module('Project', ['ngRoute', 'textAngular']);
+        .module('NBApp', ['ngRoute', 'textAngular']);
 
 })();

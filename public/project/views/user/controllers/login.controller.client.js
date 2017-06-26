@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('Project')
+        .module('NBApp')
         .controller('loginController', loginController);
 
 

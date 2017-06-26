@@ -1,0 +1,35 @@
+<nav class="navbar-inverse bg-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header pull-left">
+            <a class="navbar-brand pull-left">
+                Search Users
+            </a>
+        </div>
+        <p class="navbar-text pull-right">
+            <a href="#!/" class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+        </p>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="input-group">
+        <input ng-model="searchText"
+               type="text"
+               class="form-control">
+        <span class="input-group-btn">
+            <a ng-click="model.search(searchText)" class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+    </span>
+    </div>
+
+    <div class="row">
+        <div ng-show="model.user">
+            <a href="">
+                <!-- ng-click="model.getPlayer(player)" -->>
+            </a>
+        </div>
+    </div>
+</div>

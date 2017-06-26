@@ -1,0 +1,53 @@
+<!-- Header -->
+<nav class="navbar-inverse bg-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <p class="navbar-header pull-left">
+            <a class="navbar-brand pull-left">
+                <!-- {{model.name}} -->
+                Boston Celtics @ Minnesota Timberwolves
+            </a>
+        </p>
+        <p class="navbar-header pull-right">
+            <a class="navbar-brand pull-left hidden-xs">
+                <!-- {{model.date}} -->
+                10/10/17
+            </a>
+        </p>
+    </div>
+</nav>
+
+<!-- Contents -->
+<div ng-switch="model.view">
+
+    <!--<div ng-switch-default>-->
+        <!--<div ng-include src="'views/game/templates/box-score.view.client.html'"></div>-->
+    <!--</div>-->
+
+    <div ng-switch-when="box score">
+        <div ng-include src="'views/game/templates/box-score.view.client.html'"></div>
+    </div>
+
+    <div ng-switch-when="play by play">
+        <div ng-include src="'views/game/templates/play-by-play.view.client.html'"></div>
+    </div>
+
+
+</div>
+
+<p>{{model.game}}</p>
+
+<!-- Footer -->
+<nav class="navbar-inverse bg-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a href="#!/profile" class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
+        <p class="navbar-text pull-left">
+            <a href="#!/" class="navbar-link pull-left">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+        </p>
+    </div>
+</nav>

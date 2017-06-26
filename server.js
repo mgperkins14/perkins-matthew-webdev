@@ -1,8 +1,10 @@
-var app =           require('./express');
-var bodyParser =    require('body-parser');
-var cookieParser =  require('cookie-parser');
-var session =       require('express-session');
-var passport =      require('passport');
+var app             = require('./express');
+var bodyParser      = require('body-parser');
+var cookieParser    = require('cookie-parser');
+var session         = require('express-session');
+var passport        = require('passport');
+var msf             = require("./sportsfeed");
+
 
 app.use(cookieParser());
 //
@@ -21,5 +23,7 @@ require("./test/app.js")(app);
 var port = process.env.PORT || 3000;
 
 require('./assignment/app.js');
+require('./project/app');
+require('./project/services/sportsfeed.service.server');
 
 app.listen(port);

@@ -1,8 +1,7 @@
 (function () {
     angular
-        .module('Project')
+        .module('NBApp')
         .controller('registerController', registerController);
-
 
 
     function registerController(userService, $location) {

@@ -1,0 +1,39 @@
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        Team Stats
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+        Player Stats
+        </thead>
+    </table>
+</div>
+
+<div class="container">
+    <h2>{{model.homeTeam}}</h2>
+    <table class="table table-striped">
+
+        <thead>
+        <tr>
+            <td>
+                Player
+            </td>
+            <td ng-repeat="abbrev in model.homeAbbrev">{{abbrev}}</td>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td ng-repeat="player in model.player">{{player.data}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
