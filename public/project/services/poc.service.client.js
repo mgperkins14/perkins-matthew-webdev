@@ -6,7 +6,7 @@
     function pocService($http) {
         return {
             getPlayers: getPlayers,
-            stephData: stephData
+            findGamesForDay: findGamesForDay
         };
 
         function getPlayers() {
@@ -22,8 +22,8 @@
 
         }
 
-        function stephData() {
-            $http.get('/api/project/msf')
+        function findGamesForDay() {
+            $http.get('/api/project/sr')
                 .then(function (res) {
                     return res.data
                 }, function (err) {

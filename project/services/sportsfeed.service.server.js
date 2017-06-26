@@ -11,28 +11,47 @@ var srKey = process.env.SPORTRADAR_KEY;
 
 
 app.get('/api/project/mysportsfeed', gameQuery);
-app.get('/api/project/msf', srTest);
+app.get('/api/project/sr', srTest);
 
 //app.get('', playerQuery);
 //app.get('', dateQuery);
 
-function srTest() {
+function srTest(req, res) {
 
     srTestHelper()
         .then(function (response) {
             res.json(response)
         }, function (err) {
-            res.sendStatus(404)
+            res.send(err)
         });
 }
 
 function srTestHelper() {
-    var url = 'api.sportradar.us/nba-t3/games/2015/10/29/schedule.json?api_key=' + srKey;
+    var deferred = q.defer();
+    var path = '/nba-t3/games/2015/10/29/schedule.json?api_key=' + srKey;
 
-    https.get(url, function (response) {
+    https.get({
+        host: 'api.sportradar.us',
+        pathname: path
+    }, function (response) {
+        console.log(response);
         var body = '';
+        response.on('data', function (d) {
+            body += d;
+        });
+        response.on('end', function () {
+            try {
+                var newBody = parse(body);
+                console.dir(newBody);
+                deferred.resolve(newBody)
+            } catch (e) {
+                deferred.reject({error: e})
+            }
+        })
 
-    })
+    });
+
+    return deferred.promise;
 }
 
 function test(req, res) {
@@ -41,7 +60,7 @@ function test(req, res) {
         .then(function (response) {
             res.json(response)
         }, function (err) {
-            res.sendStatus(404)
+            res.send(err)
         });
 
 }
