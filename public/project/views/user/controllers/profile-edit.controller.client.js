@@ -1,10 +1,10 @@
 (function () {
     angular
         .module('NBApp')
-        .controller('profileController', profileController);
+        .controller('profileEditController', profileEditController);
 
 
-    function profileController(currentUser, $location, $routeParams, userService) {
+    function profileEditController(currentUser, $location, $routeParams, userService) {
 
         var model = this;
         var userId = $routeParams['userId'];

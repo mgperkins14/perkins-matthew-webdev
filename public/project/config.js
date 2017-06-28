@@ -10,7 +10,7 @@
                 controller: 'homeController',
                 controllerAs: 'model',
                 resolve: {
-                    currentUser: checkCurrentUser
+
                 }
             })
             .when('/poc', {

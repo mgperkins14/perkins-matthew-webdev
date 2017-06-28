@@ -103,7 +103,7 @@
         }
 
         function findPostsByUser() {
-            var url = '/api/project/' + userId
+            var url = '/api/project/' + userId;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
