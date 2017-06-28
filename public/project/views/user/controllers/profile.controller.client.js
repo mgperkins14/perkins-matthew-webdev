@@ -4,15 +4,25 @@
         .controller('profileController', profileController);
 
 
-    function profileController(currentUser, $location, $routeParams, userService) {
+    function profileController(currentUser, $location, $routeParams, postService, userService) {
 
         var model = this;
-        model.updateUser = updateUser;
-        model.deleteUser = deleteUser;
-        model.logout = logout;
+        model.follow = follow;
+        model.userId = $routeParams['userId'];
 
         function init() {
-
+            userService
+                .findUserById(model.userId)
+                .then(function (user) {
+                    if (currentUser === user) {
+                        $location.url('/profile')
+                    }
+                });
+            postService
+                .findPostsByUser(model.userId)
+                .then(function (posts) {
+                    model.posts = posts;
+                })
         }
         init();
 

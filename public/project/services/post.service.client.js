@@ -11,15 +11,24 @@
         };
 
         function createPost(post) {
-
+            $http.post('/api/project/post')
+                .then(function (response) {
+                    return response.data
+                })
         }
 
         function editPost(postId, post) {
-
+            $http.put('/api/project/post/' + postId)
+                .then(function (response) {
+                    return response.data
+                })
         }
 
         function deletePost(postId) {
-
+            $http.delete('/api/project/post/' + postId)
+                .then(function (response) {
+                    return response.data
+                })
         }
     }
 })();

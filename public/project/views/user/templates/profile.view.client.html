@@ -5,13 +5,30 @@
                 Profile
             </a>
         </div>
-        <p class="navbar-text pull-right">
-            <!-- TODO -->
-            <a ng-click="model.follow()"
-               class="navbar-link pull-right">
-                <span class="glyphicon glyphicon-ok"></span>
-            </a>
-        </p>
+        <div ng-switch={{model.following}}>
+            <div ng-switch-when="TRUE">
+
+                <p class="navbar-text pull-right">
+                    <!-- TODO changes for follow (empty star)/unfollow (star)-->
+                    <a ng-click="model.unfollow()"
+                       class="navbar-link pull-right">
+                        <span class="glyphicon glyphicon-star"></span>
+                    </a>
+                </p>
+            </div>
+
+            <div ng-switch-when="FALSE">
+
+                <p class="navbar-text pull-right">
+                    <!-- TODO changes for follow (empty star)/unfollow (star)-->
+                    <a ng-click="model.follow()"
+                       class="navbar-link pull-right">
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </a>
+                </p>
+            </div>
+        </div>
+
     </div>
 </nav>
 

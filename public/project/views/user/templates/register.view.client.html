@@ -10,6 +10,11 @@
            class="form-control"
            placeholder="username"/>
 
+    <input type="email"
+           ng-model="email"
+           class="form-control"
+           placeholder="email"/>
+
     <input type="password"
            ng-model="password"
            class="form-control"
@@ -21,8 +26,22 @@
            placeholder="verify password"/>
 
     <a ng-click="model.register(username, password, password2)"
-            class="btn btn-primary btn-block">Register</a>
+       class="btn btn-primary btn-block">
+        Register
+    </a>
 
     <a class="btn btn-danger btn-block"
-       href="#!/login">Cancel</a>
+       href="#!/login">
+        Cancel
+    </a>
 </div>
+
+<nav class="navbar bg-primary navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a href="#!/" class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+        </p>
+    </div>
+</nav>

@@ -4,7 +4,7 @@
         .controller('profileEditController', profileEditController);
 
 
-    function profileEditController(currentUser, $location, $routeParams, userService) {
+    function profileEditController(loggedIn, $location, $routeParams, userService) {
 
         var model = this;
         var userId = $routeParams['userId'];

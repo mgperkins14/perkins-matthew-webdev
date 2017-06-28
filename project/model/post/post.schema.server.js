@@ -5,8 +5,8 @@ var postSchema = mongoose.Schema({
     _user: {type: mongoose.Schema.ObjectId, ref: "UserModel"},
     title: String,
     text: String,
-    upvotes: {type: Number, default: 0},
-    downvotes: {type: Number, default: 0},
+    likes: {type: Number, default: 0},
+    likedBy: [{ type: mongoose.Schema.ObjectId, ref: "UserModel" }],
     dateCreated: {type: Date, default: Date.now},
     dateUpdated: {type: Date, default: Date.now}
 

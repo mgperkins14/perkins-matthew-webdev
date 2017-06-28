@@ -1,3 +1,4 @@
+// TODO: figure out resolves and authenticating
 (function () {
     angular
         .module('NBApp')
@@ -10,7 +11,7 @@
                 controller: 'homeController',
                 controllerAs: 'model',
                 resolve: {
-
+                    currentUser: checkCurrentUser
                 }
             })
             .when('/poc', {
@@ -33,7 +34,7 @@
                 controller: 'registerController',
                 controllerAs: 'model'
             })
-            .when('/profile/view', {
+            .when('/profile/:userId', {
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'profileViewController',
                 controllerAs: 'model',
@@ -83,7 +84,6 @@
             .then(function (currentUser) {
                 if(currentUser === '0') {
                     deferred.resolve({});
-                    $location.url('/post/view')
                 } else {
                     deferred.resolve(currentUser);
                 }

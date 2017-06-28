@@ -1,0 +1,53 @@
+<nav class="navbar bg-primary navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header pull-left">
+            <a class="navbar-brand pull-left">
+                Profile
+            </a>
+        </div>
+        <div ng-switch={{model.liked}}>
+            <div ng-switch-when="TRUE">
+
+                <p class="navbar-text pull-right">
+                    <a ng-click="model.unlike()"
+                       class="navbar-link pull-right">
+                        <span class="glyphicon glyphicon-thumbs-down"></span>
+                    </a>
+                </p>
+            </div>
+
+            <div ng-switch-when="FALSE">
+
+                <p class="navbar-text pull-right">
+                    <a ng-click="model.like()"
+                       class="navbar-link pull-right">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                    </a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+    <h1>{{model.title}}</h1>
+    
+    <p>
+        {{model.text}}
+    </p>
+
+</div>
+
+
+<nav class="navbar bg-primary navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a href="#!/profile" class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
+    </div>
+</nav>
+

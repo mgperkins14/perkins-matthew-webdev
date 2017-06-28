@@ -10,7 +10,6 @@
 
         return {
             getGameData: getGameData,
-            nerdData: nerdData,
             findGamesForDay: findGamesForDay
         };
 

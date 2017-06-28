@@ -9,4 +9,22 @@
 body {
     padding-top: 75px;
     padding-bottom: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+input {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.input-group {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+}
+
+#text {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }

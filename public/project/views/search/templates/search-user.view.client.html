@@ -1,4 +1,4 @@
-<nav class="navbar-inverse bg-inverse navbar-fixed-top">
+<nav class="navbar bg-primary navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header pull-left">
             <a class="navbar-brand pull-left">
@@ -17,7 +17,8 @@
     <div class="input-group">
         <input ng-model="searchText"
                type="text"
-               class="form-control">
+               class="form-control"
+               placeholder="Enter username">
         <span class="input-group-btn">
             <a ng-click="model.search(searchText)" class="btn btn-default" type="button">
                 <span class="glyphicon glyphicon-search"></span>
@@ -27,7 +28,7 @@
 
     <div class="row">
         <div ng-show="model.user">
-            <a href="">
+            <a href="#!/profile/{{model.user._id}}">
                 <!-- ng-click="model.getPlayer(player)" -->>
             </a>
         </div>
