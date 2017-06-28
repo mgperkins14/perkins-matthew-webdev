@@ -11,6 +11,7 @@ var userSchema = mongoose.Schema({
     lastName: String,
     email: String,
     following: [{ type: mongoose.Schema.ObjectId, ref: "NBAUserModel"}],
+    posts: [{  type: mongoose.Schema.ObjectId, ref: "PostModel" }],
     dateCreated: { type: Date, default: Date.now() }
 
 }, {collection: "NBAuser"});

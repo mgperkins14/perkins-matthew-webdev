@@ -6,7 +6,12 @@
     function configuration($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'home.html'
+                templateUrl: 'home.html',
+                controller: 'homeController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkCurrentUser
+                }
             })
             .when('/poc', {
                 templateUrl: 'views/poc/poc.view.client.html',

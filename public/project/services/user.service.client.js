@@ -14,7 +14,8 @@
             login: login,
             logout: logout,
             register: register,
-            checkLoggedIn: checkLoggedIn
+            checkLoggedIn: checkLoggedIn,
+            findPostsByUser: findPostsByUser
         };
 
         function createUser(user) {
@@ -99,6 +100,10 @@
                 .then(function (response) {
                     return response.data;
                 });
+        }
+
+        function findPostsByUder() {
+            var url =
         }
 
     }

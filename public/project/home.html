@@ -22,6 +22,15 @@
         <p>Welcome to the forum for NBA game statistics! Create an account, search for data, and present your findings in posts. </p>
     </div>
 
-    <!-- TODO: Display Popular posts -->
+    <!-- TODO: Display new posts -->
+    <div ng-repeat="post in model.posts">
+        <div class="container-fluid">
+            <div class="row">
+                <a href="/posts/{{post._id}}">
+                    {{post.title}}
+                </a>
+            </div>
+        </div>
+    </div>
 
 </div>
