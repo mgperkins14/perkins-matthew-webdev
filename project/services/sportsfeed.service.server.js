@@ -3,7 +3,7 @@
 var q = require('q');
 const app = require('../../express');
 const https = require('https');
-var btoa = require('btoa');
+// var btoa = require('btoa');
 var MySportsFeeds = require("mysportsfeeds-node");
 var msf = new MySportsFeeds("1.0", true);
 msf.authenticate(process.env.MSF_USERNAME, process.env.MSF_PASSWORD);
