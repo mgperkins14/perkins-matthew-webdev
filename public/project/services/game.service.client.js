@@ -45,13 +45,6 @@
             //     })
         //}
 
-        function nerdData() {
-            var url = 'https://www.fantasybasketballnerd.com/service/draft-rankings';
-            $http.get(url)
-                .then(function (res) {
-                    return res.data
-                })
-        }
 
     }
 
