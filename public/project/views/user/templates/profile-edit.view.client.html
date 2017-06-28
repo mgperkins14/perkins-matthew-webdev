@@ -1,0 +1,66 @@
+<nav class="navbar bg-primary navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header pull-left">
+            <a class="navbar-brand pull-left">
+                Profile
+            </a>
+        </div>
+        <p class="navbar-text pull-right">
+            <a href="#!/user/{{model.userId}}/website" class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </p>
+    </div>
+</nav>
+
+
+<div class="container">
+    <h1>Profile</h1>
+
+    <form>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input readonly
+                   ng-model="model.user.username"
+                   type="text"
+                   class="form-control"
+                   id="username">
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email"
+                   class="form-control"
+                   id="email">
+        </div>
+        <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input ng-model="model.user.firstName"
+                   type="text"
+                   class="form-control"
+                   id="first-name">
+        </div>
+        <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input ng-model="model.user.lastName"
+                   type="text"
+                   class="form-control"
+                   id="last-name">
+        </div>
+    </form>
+
+    <a class="btn btn-primary btn-block"
+       href="#!/user/{{model.userId}}/website">Websites</a>
+    <a class="btn btn-danger  btn-block"
+       href="#!/">Logout</a>
+</div>
+
+<nav class="navbar bg-primary navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a href="#!/user/{{model.userId}}" class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
+    </div>
+</nav>
+

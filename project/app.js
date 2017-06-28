@@ -1,7 +1,7 @@
 var app = require('../express');
 var mongoose = require('mongoose');
 mongoose.Promise = require('q').Promise;
-mongoose.connect('mongodb://localhost/webdev_summer1_2017');
+// mongoose.connect('mongodb://localhost/project_data');
 
 require('./services/post.service.server');
 require('./services/sportsfeed.service.server');

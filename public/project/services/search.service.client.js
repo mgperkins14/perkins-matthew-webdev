@@ -5,8 +5,9 @@
 
     function searchService($http) {
         return {
-
+            findGamesForDay: findGamesForDay
         };
+
 
     }
 })();

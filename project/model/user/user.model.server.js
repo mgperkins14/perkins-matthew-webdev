@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var bcrypt = require("bcrypt-nodejs");
+
 var userSchema = require('./user.schema.server');
 var userModel = mongoose.model('NBAUserModel', userSchema);
 
@@ -13,6 +15,8 @@ userModel.findUserByFacebookId = findUserByFacebookId;
 module.exports = userModel;
 
 function createUser(user) {
+    user.role = "USER";
+    user.password = bcrypt.hashSync(user.password);
     return userModel.create(user);
 }
 
@@ -21,7 +25,17 @@ function findUserById(userId) {
 }
 
 function findUserByCredentials(username, password) {
-    return userModel.findOne({username: username, password: password});
+
+    return userModel
+        .findOne({username: username})
+        .then(function (user) {
+            if (user && bcrypt.compareSync(password, user.password)) {
+                return user;
+            } else {
+                null;
+            }
+        });
+
 }
 
 function updateUser(userId, newUser) {
@@ -45,5 +59,13 @@ function findUserByUsername(username) {
 
 function findUserByFacebookId(facebookId) {
     return userModel.findOne({'facebook.id': facebookId});
+}
+
+function follow(followerId, newFollowId) {
+    return userModel
+        .findById(followerId)
+        .then(function (user) {
+            user.following.push(newFollowId)
+        })
 }
 

@@ -10,9 +10,9 @@ var userSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
     email: String,
-    following: { type: Array, default: [] },
+    following: [{ type: mongoose.Schema.ObjectId, ref: "NBAUserModel"}],
     dateCreated: { type: Date, default: Date.now() }
 
-}, {collection: "user"});
+}, {collection: "NBAuser"});
 
 module.exports = userSchema;

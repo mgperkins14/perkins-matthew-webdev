@@ -12,19 +12,20 @@
 
             // var found = userService.findUserByCredentials(username, password);
             userService
-                .findUserByCredentials(username, password)
+                .login(username, password)
                 .then(login, handleError);
 
             function handleError(error) {
+                console.log(error);
                 model.message = "Username " + username + " not found, please try again";
             }
 
             function login(found) {
+                console.log(found);
                 if(found !== null) {
-                    $location.url('/user/' + found._id);
-                    // $scope.message = "Welcome " + username;
+                    $location.url('/profile');
                 } else {
-                    model.message = "Username " + username + " not found, please try again";
+                    model.message = "Error: Please try again.";
                 }
             }
         };

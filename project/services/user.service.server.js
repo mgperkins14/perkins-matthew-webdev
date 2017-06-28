@@ -16,35 +16,39 @@ passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
-app.get     ('/api/assignment/user', findUserByCredentials);
-app.get     ('/api/assignment/user/:userId', findUserById);
-app.get     ('/api/assignment/user', findUserByUsername);
-app.post    ('/api/assignment/user', createUser);
-app.put     ('/api/assignment/user/:userId', updateUser);
-app.delete  ('/api/assignment/user/:userId', deleteUser);
+app.get     ('/api/project/user', findUserByCredentials);
+app.get     ('/api/project/user/:userId', findUserById);
+app.get     ('/api/project/user', findUserByUsername);
+app.post    ('/api/project/user', createUser);
+app.put     ('/api/project/user/:userId', updateUser);
+app.delete  ('/api/project/user/:userId', deleteUser);
 
-app.post    ('/api/assignment/login', passport.authenticate('local'), login);
-app.get     ('/api/assignment/checkLoggedIn', checkLoggedIn);
-app.post    ('/api/assignment/logout', logout);
-app.post    ('/api/assignment/register', register);
+app.post    ('/api/project/login', passport.authenticate('local'), login);
+app.get     ('/api/project/checkLoggedIn', checkLoggedIn);
+app.post    ('/api/project/logout', logout);
+app.post    ('/api/project/register', register);
 app.get     ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
 function localStrategy(username, password, done) {
     userModel
         .findUserByUsername(username)
-        .then(
-            function (user) {
-                if (user && bcrypt.compareSync(password, user.password)) {
-                    done(null, user);
-                }
-                else {
-                    done(null, false);
-                }
-            },
-            function (err) {
-                done(err, false);
+        .then(function (user) {
+            if (!user) {
+                return done(null, false);
             }
-        )
+            // TODO: figure out compareSync issue
+            if (user.username === username && bcrypt.compareSync(password, user.password)) {
+                return done(null, user);
+            } else {
+                return done(null, false);
+            }
+        }, function (err) {
+            if (err) {
+                return done(err);
+            } else {
+                return done(null, false);
+            }
+        });
 }
 
 function facebookStrategy(token, refreshToken, profile, done) {

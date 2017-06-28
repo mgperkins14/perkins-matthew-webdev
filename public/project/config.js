@@ -28,19 +28,25 @@
                 controller: 'registerController',
                 controllerAs: 'model'
             })
-            .when('/user/:userId', {
+            .when('/profile/view', {
                 templateUrl: 'views/user/templates/profile.view.client.html',
-                controller: 'profileController',
-                controllerAs: 'model'
+                controller: 'profileViewController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkCurrentUser
+                }
+            })
+            .when('/profile', {
+                templateUrl: 'views/user/templates/profile-edit.view.client.html',
+                controller: 'profileEditController',
+                controllerAs: 'model',
+                resolve: {
+                    loggedin: checkLoggedIn
+                }
             })
             .when('/game/:gameId', {
                 templateUrl: 'views/game/templates/game.view.client.html',
                 controller: 'gameController',
-                controllerAs: 'model'
-            })
-            .when('/player/:playerId', {
-                templateUrl: 'views/player/templates/player.view.client.html',
-                controller: 'playerController',
                 controllerAs: 'model'
             })
             .when('/post/:postId', {
@@ -48,9 +54,9 @@
                 controller: 'postController',
                 controllerAs: 'model'
             })
-            .when('/search/players', {
-                templateUrl: 'views/search/templates/search-player.view.client.html',
-                controller: 'searchPlayerController',
+            .when('/post/:postId/edit', {
+                templateUrl: 'views/post/templates/post-edit.view.client.html',
+                controller: 'postEditController',
                 controllerAs: 'model'
             })
             .when('/search/games', {
@@ -63,6 +69,51 @@
                 controller: 'searchUserController',
                 controllerAs: 'model'
             })
+    }
+
+    function checkCurrentUser($q, $location, userService) {
+        var deferred = $q.defer();
+        userService
+            .checkLoggedIn()
+            .then(function (currentUser) {
+                if(currentUser === '0') {
+                    deferred.resolve({});
+                    $location.url('/post/view')
+                } else {
+                    deferred.resolve(currentUser);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function checkAdmin($q, $location, userService) {
+        var deferred = $q.defer();
+        userService
+            .checkAdmin()
+            .then(function (currentUser) {
+                if(currentUser === '0') {
+                    deferred.resolve({});
+                    $location.url('/');
+                } else {
+                    deferred.resolve(currentUser);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function checkLoggedIn($q, $location, userService) {
+        var deferred = $q.defer();
+        userService
+            .checkLoggedIn()
+            .then(function (currentUser) {
+                if(currentUser === '0') {
+                    deferred.reject();
+                    $location.url('/login');
+                } else {
+                    deferred.resolve(currentUser);
+                }
+            });
+        return deferred.promise;
     }
 
 })();

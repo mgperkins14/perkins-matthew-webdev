@@ -10,6 +10,6 @@ var postSchema = mongoose.Schema({
     dateCreated: {type: Date, default: Date.now},
     dateUpdated: {type: Date, default: Date.now}
 
-}, {collection: "post"});
+}, {collection: "NBA_post"});
 
 module.exports = postSchema;

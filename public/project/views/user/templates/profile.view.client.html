@@ -5,59 +5,54 @@
                 Profile
             </a>
         </div>
-        <p class="navbar-text pull-right">
-            <a href="#!/user/{{model.userId}}/website" class="navbar-link pull-right">
-                <span class="glyphicon glyphicon-ok"></span>
-            </a>
-        </p>
     </div>
 </nav>
 
 
-<div class="container">
+<div class="container-fluid">
     <h1>Profile</h1>
 
-    <form>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input readonly
-                   ng-model="model.user.username"
-                   type="text"
-                   class="form-control"
-                   id="username">
-        </div>
-        <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email"
-                   class="form-control"
-                   id="email">
-        </div>
-        <div class="form-group">
-            <label for="first-name">First Name</label>
-            <input ng-model="model.user.firstName"
-                   type="text"
-                   class="form-control"
-                   id="first-name">
-        </div>
-        <div class="form-group">
-            <label for="last-name">Last Name</label>
-            <input ng-model="model.user.lastName"
-                   type="text"
-                   class="form-control"
-                   id="last-name">
-        </div>
-    </form>
+    <h3>Username</h3>
+    {{model.username}}
 
-    <a class="btn btn-primary btn-block"
-       href="#!/user/{{model.userId}}/website">Websites</a>
-    <a class="btn btn-danger  btn-block"
-       href="#!/">Logout</a>
+    <h3>First Name</h3>
+    {{model.firstName}}
+
+    <a class="btn btn=primary  btn-block"
+       ng-click="model.addFriend()">Follow</a>
+
+
+</div>
+
+<div class="container-fluid">
+
+    <ul class="list-group">
+        <li class="list-group-item active">
+            <div class="row">
+                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                    Posts
+                </div>
+            </div>
+        </li>
+
+        <li ng-repeat="post in model.posts" class="list-group-item">
+
+            <div class="row">
+                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                    <a href="#!/post/{{post._id}}">
+                        {{post.title}}
+                    </a>
+                </div>
+            </div>
+
+        </li>
+    </ul>
 </div>
 
 <nav class="navbar bg-primary navbar-fixed-bottom">
     <div class="container-fluid">
         <p class="navbar-text pull-right">
-            <a href="#!/user/{{model.userId}}" class="navbar-link pull-right">
+            <a href="#!/profile" class="navbar-link pull-right">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </p>

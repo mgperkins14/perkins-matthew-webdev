@@ -3,6 +3,7 @@
         .directive('wdDraggable', wdDraggable);
 
     function wdDraggable(widgetService) {
+
         function linkFunction(scope, element) {
             var initial = 0;
             $(element).sortable({

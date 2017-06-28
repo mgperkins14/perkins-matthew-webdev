@@ -10,20 +10,27 @@
 
         return {
             getGameData: getGameData,
-            nerdData: nerdData
+            nerdData: nerdData,
+            findGamesForDay: findGamesForDay
         };
 
-        function getSeason(gameId) {
-
+        function findGamesForDay(date) {
+            var mdy = date.split('/');
+            var month = mdy[0];
+            var day = mdy[1];
+            var year = mdy[2];
+            var url = '/api/project/day/' + year + '/' + month + '/' + day;
+            $http.get(url)
+                .then(function (response) {
+                    return response.data
+                })
         }
 
         function getGameData(season, gameId) {
             var seasonName = '2015-2016-regular';
             var gameId = '20151029-ATL-NYK';
 
-            // var url = 'https://mg.perkins14:kibbles@www.mysportsfeeds.com/api/feed/pull/nba/' + seasonName + '/game_boxscore.json?gameid=' +gameId;
-
-            $http.get('/api/project/mysportsfeed')
+            $http.get('/api/project/game')
                 .then(function (res) {
                     return res.data
                 }, function (err) {
